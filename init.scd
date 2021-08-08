@@ -11,11 +11,23 @@ s.options.memSize = 102400;
 ~setup = { |setup|
 	var caseFound = false;
 
-	if(setup == "desktop",
+	if(setup == "desktop-asio",
 		{
-			"desktop initialized".postln;
+			"desktop-asio initialized".postln;
 			caseFound = true;
 			s.options.outDevice ="Voicemeeter AUX Virtual ASIO";
+			s.options.numOutputBusChannels = 2;
+			s.options.numInputBusChannels = 2;
+			s.reboot;
+		},
+	);
+
+	if(setup == "desktop-stream",
+		{
+			"desktop-stream initialized".postln;
+			caseFound = true;
+			s.options.inDevice ="MME : VoiceMeeter Aux Output";
+			s.options.outDevice ="MME : VoiceMeeter Aux Input";
 			s.options.numOutputBusChannels = 2;
 			s.options.numInputBusChannels = 2;
 			s.reboot;
